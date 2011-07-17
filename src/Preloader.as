@@ -1,4 +1,4 @@
-package 
+package   
 {
 	import org.flixel.FlxG;
 	import org.flixel.system.FlxPreloader;

@@ -1,7 +1,8 @@
-package 
+package   
 {
 	import org.flixel.FlxG;
 	import org.flixel.FlxGame;
+	import gridgame.PlayState;
 	
 	[SWF(width="640", height="480", backgroundColor="#111111")]
 	[Frame(factoryClass="Preloader")]

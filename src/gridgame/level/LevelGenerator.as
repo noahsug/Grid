@@ -1,4 +1,4 @@
-package 
+package gridgame.level 
 {
 	import org.flixel.*;
 	

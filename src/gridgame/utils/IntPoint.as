@@ -1,4 +1,4 @@
-package utils
+package gridgame.utils
 {
 public class IntPoint
 {

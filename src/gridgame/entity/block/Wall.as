@@ -1,6 +1,7 @@
-package entity
+package gridgame.entity.block
 {
-public class Wall extends Entity
+
+public class Wall extends Block
 {
 	[Embed(source="./assets/wall.png")] private var WallImg:Class;
 	

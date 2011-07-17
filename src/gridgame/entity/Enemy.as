@@ -1,4 +1,4 @@
-package entity
+package gridgame.entity
 {
 	import org.flixel.*;
 	

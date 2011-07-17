@@ -1,9 +1,11 @@
-package entity.movement
+package gridgame.entity.movement
 {
 
-import entity.Entity;
+import gridgame.entity.Entity;
 
 import org.flixel.*;
+import gridgame.level.Level;
+import gridgame.level.Space;
 
 public class FreeGridMovementBehavior extends MovementBehavior
 {

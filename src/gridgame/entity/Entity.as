@@ -1,6 +1,7 @@
-package entity
+package gridgame.entity
 {
 	import org.flixel.*;
+	import gridgame.level.Level;
 	
 	public /*abstract*/ class Entity extends FlxSprite
 	{
@@ -27,6 +28,6 @@ package entity
 		public function get position():FlxPoint
 		{
 			return getMidpoint(_position);
-		}		
+		}
 	}
 }

@@ -1,14 +1,14 @@
-package
+package gridgame.level
 {
-import entity.Entity;
+import gridgame.entity.block.Block;
+import gridgame.entity.Entity;
+import gridgame.utils.IntPoint;
 
 import org.flixel.*;
 
-import utils.IntPoint;
-
 public class Space
 {
-	private var _block:Entity;
+	private var _block:Block;
 	private var _level:Level;
 	private var _tileIndex:uint;
 	private var _position:FlxPoint;
@@ -30,19 +30,30 @@ public class Space
 	
 	public function get position():FlxPoint { return _position; }
 	
-	public function get block():Entity { return _block; }
-	public function set block(block:Entity):void 
+	public function get block():Block 
+	{
+		return _block; 
+	}
+	public function set block(block:Block):void 
 	{ 	
-		if (block == null && _block != null)
+		if (!block && _block)
 			_level.setTileByIndex(_tileIndex, 0, true);
-		if (_block == null && block != null) {
-			_level.setTileByIndex(_tileIndex, 1, true);
-		}		
+		if (!_block && block) {
+			_level.setTileByIndex(_tileIndex, 1, false);
+		}
 		_block = block;
-		if (_block != null)
-			_block.setPosition(_position.x, _position.y);
+		if (_block)	_block.setPosition(_position.x, _position.y);
 	}
 	
 	public function get allowCollisions():Boolean { return _block != null; }
+	
+	public function removeBlock():void
+	{
+		if (_block) 
+		{
+			_block.kill();
+			block = null;
+		}
+	}
 }
 }
