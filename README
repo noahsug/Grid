@@ -1,3 +1,19 @@
 Working title Grid is a Flash game made with Flixel.
 
 It's very much in progress at the moment, and currently you run around building walls and structures in a wild attempt to not get eaten by the critters.
+
+Current TODOs
+-Menu
+-Game over / replayability
+-Enemy targeting when player is unreachable
+-Enemies nom throw blocks
+-More enemy types
+
+Possible Game Direction
+-Two buttons build/destory and upgrade
+-Have multiple levels, some random, some set senarios
+-Larger map with scrolling cameras
+
+Future TODOs
+-Tutorial
+-Difficulty levels
