@@ -38,8 +38,8 @@ public class Currency
 	private function getCost(Block:Class):int
 	{
 		if (Block == Wall) return 2;
-		if (Block == Turret) return 2;
-		if (Block == Supplier) return 2;
+		if (Block == Turret) return 3; // 5
+		if (Block == Supplier) return 5; // 10
 		return 0;
 	}
 }

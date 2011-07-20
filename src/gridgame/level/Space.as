@@ -1,7 +1,9 @@
 package gridgame.level
 {
-import gridgame.entity.block.Block;
+import flash.geom.Point;
+
 import gridgame.entity.Entity;
+import gridgame.entity.block.Block;
 import gridgame.utils.IntPoint;
 
 import org.flixel.*;
@@ -18,7 +20,8 @@ public class Space
 	{		
 		_level = level;
 		_tileIndex = tileIndex;
-		_position = _level.getPointFromIndex(tileIndex);
+		_position = new FlxPoint();
+		_position = _level.getPointFromIndex(tileIndex, _position);
 		_midpoint.x = _position.x + Level.TileSize / 2;
 		_midpoint.y = _position.y + Level.TileSize / 2;
 	}
@@ -42,7 +45,7 @@ public class Space
 			_level.setTileByIndex(_tileIndex, 1, false);
 		}
 		_block = block;
-		if (_block)	_block.setPosition(_position.x, _position.y);
+		if (_block)	_block.position = position;
 	}
 	
 	public function get allowCollisions():Boolean { return _block != null; }

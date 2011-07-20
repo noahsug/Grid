@@ -8,7 +8,7 @@ public class Supplier extends Block
 {
 	[Embed(source="./assets/supplier.png")] private var SupplierImg:Class;
 	
-	private static const IncomeRate:Number = 2;
+	private static const IncomeRate:Number = 4;
 	
 	private var _currency:Currency;
 	private var _currencyTimer:Number;

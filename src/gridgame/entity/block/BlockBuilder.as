@@ -38,6 +38,8 @@ public class BlockBuilder
 			_emitterGroup.add(blockProperties.emitter);
 		}
 		
+		_emitterGroup.countDead()
+		
 		_blockPropertiesIndex = 0;
 		_buildTime = 0;
 		_isBuilding = false;

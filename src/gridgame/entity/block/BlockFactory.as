@@ -6,15 +6,22 @@ import gridgame.Currency;
 import gridgame.entity.Entity;
 
 import org.flixel.FlxGroup;
+import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
 
 public class BlockFactory
 {
-	private static var _blocks:FlxGroup = new FlxGroup();
-	private static var _currency:Currency;
+	private static var _blocks: FlxGroup = new FlxGroup();	
+	private static var _currency: Currency;	
+	private static var _targets: FlxGroup;
 	
 	public static function setCurrency(currency:Currency):void
 	{
 		_currency = currency;
+	}
+	
+	public static function setTargets(targets:FlxGroup):void
+	{
+		_targets = targets;
 	}
 	
 	public static function getBlockGroup():FlxGroup
@@ -29,7 +36,9 @@ public class BlockFactory
 	
 	public static function makeTurret():Block
 	{
-		return reviveBlock(Turret);
+		var turret:Turret = reviveBlock(Turret) as Turret;
+		turret.setTargets(_targets);
+		return turret;
 	}
 	
 	public static function makeSupplier():Block

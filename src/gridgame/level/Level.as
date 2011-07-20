@@ -39,7 +39,7 @@ package gridgame.level
 		
 		public function getPointFromIndex(i:int, point:FlxPoint=null):FlxPoint
 		{
-			if (point == null) 
+			if (!point) 
 				point = new FlxPoint();
 			point.x = (i % widthInTiles) * TileSize;
 			point.y = (int)(i / widthInTiles) * TileSize;
@@ -54,7 +54,7 @@ package gridgame.level
 
 		public function getSpace(x:int, y:int):Space
 		{
-			return _spaces[_ty * widthInTiles + _tx];
+			return _spaces[y * widthInTiles + x];
 		}
 		
 		public function isOutOfBounds(point:FlxPoint):Boolean 
