@@ -1,6 +1,7 @@
 package gridgame.entity.moving
 {
 	import gridgame.entity.Entity;
+	import gridgame.level.Space;
 	
 	import org.flixel.*;
 	
@@ -16,7 +17,7 @@ package gridgame.entity.moving
 		public function Enemy()
 		{
 			super(EntityImg);
-			movementBehavior = new FollowMovementBehavior(this);
+			movementBehavior = new PathFollowMovementBehavior(this);
 			movementBehavior.setSpeed(Speed);			
 		}
 								
@@ -27,18 +28,23 @@ package gridgame.entity.moving
 				target.kill();
 				enemy.angle = FlxU.getAngle(enemy.midpoint, target.midpoint);				
 				enemy.freeze(100);
-			}			
+			}
+		}
+		
+		public override function update():void
+		{
+			if (hitObject && ((PathFollowMovementBehavior) (movementBehavior)).stuckOnBlock) {
+				var space:Space = getSpaceInFront();
+				if (space && space.allowCollisions && space.block)
+					space.block.hurt(10);//1 * FlxG.elapsed);
+			}
+			super.update();
 		}
 		
 		public function followTarget(target:Entity):void
 		{
 			_target = target;
-			((FollowMovementBehavior) (movementBehavior)).setTarget(_target);
-		}				
-
-		public override function update():void
-		{
-			super.update();
+			((PathFollowMovementBehavior) (movementBehavior)).setTarget(_target);
 		}
 		
 		protected override function get maxHealth():Number { return MaxHealth; }

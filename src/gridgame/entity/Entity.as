@@ -7,9 +7,8 @@ package gridgame.entity
 	public /*abstract*/ class Entity extends FlxSprite
 	{		
 		private static const DefaultMaxHealth:int = 10;
-		private var _midpoint:FlxPoint = new FlxPoint();
-		private var _hitObject:FlxObject;
-		
+		private var _midpoint:FlxPoint = new FlxPoint();				
+		protected var _level:Level;
 		
 		public function Entity(img:Class=null)
 		{
@@ -17,15 +16,14 @@ package gridgame.entity
 			health = maxHealth;
 		}
 		
-		public static function levelHit(entity:Entity, block:FlxObject): void
-		{
-			entity.levelHit(block);
-		}
-		
 		public override function update(): void
 		{
-			super.update();
-			_hitObject = null;
+			super.update();			
+		}
+
+		public function setLevel(level:Level):void
+		{
+			_level = level;	
 		}
 		
 		public function setPosition(x:Number, y:Number):void
@@ -48,16 +46,7 @@ package gridgame.entity
 			health = maxHealth;
 			super.revive();
 		}
-		
-		public function get hitObject():FlxObject {
-			return _hitObject;
-		}
-		
+						
 		protected function get maxHealth():Number { return DefaultMaxHealth; }
-		
-		protected function levelHit(block:FlxObject):void
-		{
-			_hitObject = block;			
-		}
 	}
 }

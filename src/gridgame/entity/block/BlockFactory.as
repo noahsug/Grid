@@ -4,6 +4,7 @@ import flashx.textLayout.debug.assert;
 
 import gridgame.Currency;
 import gridgame.entity.Entity;
+import gridgame.level.Level;
 
 import org.flixel.FlxGroup;
 import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
@@ -13,6 +14,7 @@ public class BlockFactory
 	private static var _blocks: FlxGroup = new FlxGroup();	
 	private static var _currency: Currency;	
 	private static var _targets: FlxGroup;
+	private static var _level:Level;
 	
 	public static function setCurrency(currency:Currency):void
 	{
@@ -22,6 +24,11 @@ public class BlockFactory
 	public static function setTargets(targets:FlxGroup):void
 	{
 		_targets = targets;
+	}
+	
+	public static function setLevel(level:Level):void
+	{
+		_level = level;
 	}
 	
 	public static function getBlockGroup():FlxGroup
@@ -60,6 +67,7 @@ public class BlockFactory
 	{
 		var block:Block = _blocks.recycle(Obj) as Block;
 		block.revive();
+		block.setLevel(_level);
 		return block;
 	}		
 }

@@ -6,6 +6,7 @@ package gridgame
 	import gridgame.entity.block.Turret;
 	import gridgame.entity.moving.Enemy;
 	import gridgame.entity.moving.EnemySpawner;
+	import gridgame.entity.moving.MovingEntity;
 	import gridgame.entity.moving.Player;
 	import gridgame.level.Level;
 	
@@ -33,6 +34,7 @@ package gridgame
 			add(_level);						
 			
 			BlockFactory.setCurrency(_currency);
+			BlockFactory.setLevel(_level);
 			BlockFactory.setTargets(_enemySpawner.enemyGroup);
 			add(BlockFactory.getBlockGroup());
 			
@@ -66,7 +68,7 @@ package gridgame
 		public override function update():void
 		{
 			super.update();			
-			FlxG.collide(_movingEntities, _level, Entity.levelHit);
+			FlxG.collide(_movingEntities, _level, MovingEntity.levelHit);
 			
 			FlxG.overlap(Turret.getBulletGroup(), _enemySpawner.enemyGroup, Turret.bulletHit);
 			

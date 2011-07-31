@@ -54,7 +54,8 @@ public class Space
 	{
 		if (_block) 
 		{
-			_block.kill();
+			if (_block.alive)
+				_block.kill();
 			block = null;
 		}
 	}

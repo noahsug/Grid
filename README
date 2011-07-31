@@ -9,11 +9,15 @@ Current TODOs
 -Enemies nom throw blocks
 -More enemy types
 
+Bugs
+-Turn right after building to build behind player, may get stuck in block
+
 Possible Game Direction
 -Two buttons build/destory and upgrade
 -Have multiple levels, some random, some set senarios
 -Larger map with scrolling cameras
 
 Future TODOs
+-Graphics
 -Tutorial
 -Difficulty levels

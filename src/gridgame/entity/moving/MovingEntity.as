@@ -5,11 +5,12 @@ import gridgame.level.Level;
 import gridgame.level.Space;
 
 import org.flixel.FlxG;
+import org.flixel.FlxObject;
 import org.flixel.FlxPoint;
 
 public class MovingEntity extends Entity
 {
-	protected var _level:Level;
+	private var _hitObject:FlxObject;
 	public var movementBehavior: MovementBehavior;
 	
 	protected var _freezeDuration:Number;
@@ -20,10 +21,15 @@ public class MovingEntity extends Entity
 		super(img);
 	}
 	
-	public function setLevel(level:Level):void
+	public static function levelHit(entity:MovingEntity, block:FlxObject): void
 	{
-		_level = level;	
-		movementBehavior.setLevel(_level);			
+		entity.levelHit(block);
+	}
+	
+	public override function setLevel(level:Level):void
+	{
+		super.setLevel(level);
+		movementBehavior.setLevel(level);			
 	}
 	
 	public function freeze(duration:Number):void
@@ -33,19 +39,24 @@ public class MovingEntity extends Entity
 	}
 	
 	public override function update():void
-	{		
+	{
 		handleFreezing();
 		movementBehavior.update();		
 		super.update();
+		_hitObject = null;
 	}		
 	
-	private function handleFreezing():void
+	protected function handleFreezing():void
 	{
 		if (_freezeDuration > 0)
 		{
 			_freezeDuration -= FlxG.elapsed;
 			if (_freezeDuration <= 0) moves = true;
 		}
+	}
+	
+	internal function get hitObject():FlxObject {
+		return _hitObject;
 	}
 	
 	internal function moveAlongPath():void
@@ -60,6 +71,11 @@ public class MovingEntity extends Entity
 		_destination.y = midpoint.y + Level.TileSize * movementBehavior.direction.y;
 		if (_level.isOutOfBounds(_destination)) return null;				
 		return _level.getClosestSpace(_destination);
+	}
+			
+	protected function levelHit(block:FlxObject):void
+	{
+		_hitObject = block;			
 	}
 }
 }
